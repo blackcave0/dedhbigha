@@ -8,9 +8,9 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
-  turbopack: {
-    root: path.resolve(process.cwd(), ".."),
-  },
+  // turbopack: {
+  //   root: path.resolve(process.cwd(), ".."),
+  // },
 };
 
 export default nextConfig;
