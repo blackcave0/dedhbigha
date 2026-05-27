@@ -8,11 +8,12 @@ import { cn } from '@/lib/utils'
 type ButtonVariant = 'primary' | 'outline' | 'ghost' | 'danger'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
-interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'size'> {
+interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'size' | 'children'> {
   variant?: ButtonVariant
   size?: ButtonSize
   loading?: boolean
   fullWidth?: boolean
+  children?: ReactNode
   leftIcon?: ReactNode
   rightIcon?: ReactNode
 }
