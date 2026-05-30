@@ -15,11 +15,14 @@ interface MobileNavProps {
 const navLinks = [
   { label: 'Buy', href: '/buy' },
   { label: 'Rent', href: '/rent' },
-  { label: 'New Projects', href: '/new-projects' },
-  { label: 'Commercial', href: '/commercial' },
+  { label: 'For Sellers', href: '/for-sellers' },
+  { label: 'For Tenants', href: '/for-tenants' },
+  { label: 'Services', href: '/services' },
+  { label: 'Guides', href: '/guides' },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'Agents', href: '/agents' },
-  { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
+  { label: 'About', href: '/about' },
 ]
 
 export default function MobileNav({ isOpen, onClose, isScrolled }: MobileNavProps) {

@@ -390,7 +390,7 @@ export default function PostPropertyPage() {
     <div className="flex min-h-screen flex-col">
       <Navbar />
 
-      <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-8 sm:px-6">
+      <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-8 sm:px-6 mt-20">
         <div className="mb-6">
           <h1 className="font-heading text-3xl font-bold text-navy-900">Post a Property</h1>
           <p className="mt-1 text-sm text-navy-500">

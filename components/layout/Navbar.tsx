@@ -4,17 +4,14 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
-  Home,
-  Search,
   Menu,
   Heart,
   User,
   ChevronDown,
-  Building2,
-  MapPin,
   LogOut,
   LayoutDashboard,
   Settings,
+  PlusCircle,
 } from 'lucide-react'
 import { useAuth } from '@/store/auth'
 import MobileNav from './MobileNav'
@@ -22,8 +19,14 @@ import MobileNav from './MobileNav'
 const navItems = [
   { label: 'Buy', href: '/buy' },
   { label: 'Rent', href: '/rent' },
-  { label: 'New Projects', href: '/new-projects' },
-  { label: 'Commercial', href: '/commercial' },
+  { label: 'For Sellers', href: '/for-sellers' },
+  { label: 'For Tenants', href: '/for-tenants' },
+]
+
+const resourceItems = [
+  { label: 'Services', href: '/services' },
+  { label: 'Guides', href: '/guides' },
+  { label: 'Pricing', href: '/pricing' },
 ]
 
 const userMenuItems = [
@@ -70,8 +73,9 @@ export default function Navbar() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex h-16 items-center justify-between gap-4">
             <Link href="/" className="flex shrink-0 items-center gap-2">
-              <div className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${showBg ? 'bg-primary-500' : 'bg-white/20'}`}>
-                <Home className="h-4 w-4 text-white" />
+              <div className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors`}>
+                {/* <Home className="h-4 w-4 text-white" /> */}
+                <img src="/logo.png" alt="" className='w-full h-full object-cover' />
               </div>
               <span className={`font-heading text-xl font-bold tracking-tight transition-colors ${
                 showBg ? 'text-primary-500' : 'text-white'
@@ -98,19 +102,50 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               ))}
+              <div className="relative group">
+                <button
+                  className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    resourceItems.some(r => isActive(r.href))
+                      ? showBg
+                        ? 'bg-primary-50 text-primary-600'
+                        : 'bg-white/15 text-white'
+                      : showBg
+                        ? 'text-gray-700 hover:bg-gray-100 hover:text-primary-600'
+                        : 'text-white/75 hover:bg-white/10 hover:text-white'
+                  }`}
+                >
+                  More
+                  <ChevronDown className="h-3.5 w-3.5" />
+                </button>
+                <div className="absolute right-0 top-full mt-1 z-50 w-44 rounded-xl border border-gray-100 bg-white py-2 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  {resourceItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`flex items-center gap-2 px-4 py-2 text-sm transition-colors ${
+                        isActive(item.href)
+                          ? 'text-primary-600 bg-primary-50'
+                          : 'text-gray-700 hover:bg-gray-50'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </nav>
 
             <div className="flex items-center gap-2">
               <Link
-                href="/agents"
-                className={`hidden sm:flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                href="/post-property"
+                className={`hidden sm:flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg transition-all ${
                   showBg
-                    ? 'text-gray-700 hover:bg-gray-100'
-                    : 'text-white/75 hover:bg-white/10 hover:text-white'
+                    ? 'bg-primary-500 text-white hover:bg-primary-600 shadow-sm'
+                    : 'bg-gold-400 text-primary-900 hover:bg-gold-500'
                 }`}
               >
-                <User className="h-4 w-4" />
-                Agents
+                <PlusCircle className="h-4 w-4" />
+                Post Property
               </Link>
 
               <Link

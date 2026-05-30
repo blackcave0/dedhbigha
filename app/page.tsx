@@ -6,7 +6,8 @@ import { motion } from 'framer-motion'
 import {
   Search, MapPin, Bed, Bath, Square, ArrowRight,
   Building2, Home, Key, Shield, Users, TrendingUp,
-  CandlestickChart,
+  CandlestickChart, Camera, FileText, CheckCircle,
+  Star, HelpCircle, ChevronDown, BarChart3, BadgeCheck,
 } from 'lucide-react'
 import { Navbar, Footer } from '@/components/layout'
 
@@ -115,6 +116,7 @@ export default function HomePage() {
   const [recentFilter, setRecentFilter] = useState('All')
   const [ownerFilter, setOwnerFilter] = useState('All')
   const [moveInTimeline, setMoveInTimeline] = useState('')
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -838,6 +840,293 @@ export default function HomePage() {
                   </Link>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════ WHY LIST WITH US — redesigned ═══════════ */}
+        <section className="relative overflow-hidden bg-primary-500 py-0">
+          <div className="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-gold-400/10 to-transparent" />
+          <div className="mx-auto max-w-7xl px-6 lg:px-12">
+            <div className="grid lg:grid-cols-5 gap-10 items-center min-h-[500px]">
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="lg:col-span-2 py-16 lg:py-20"
+              >
+                <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold-400 mb-5">
+                  For Property Owners
+                </span>
+                <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] text-white">
+                  Why List Your Property
+                  <br />
+                  <span className="text-gold-400">on DedhBigha?</span>
+                </h2>
+                <p className="mt-4 text-base text-white/50 leading-relaxed max-w-sm">
+                  Join thousands of property owners who trust us to find the right buyers and tenants.
+                </p>
+                <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                  <Link
+                    href="/post-property"
+                    className="group inline-flex items-center gap-2 px-6 py-3 bg-gold-400 text-primary-900 font-bold text-sm hover:bg-gold-500 transition-all"
+                    style={{ clipPath: 'polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)' }}
+                  >
+                    Post Property Now
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <Link
+                    href="/for-sellers"
+                    className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white text-sm font-medium hover:bg-white/10 transition-all"
+                    style={{ clipPath: 'polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)' }}
+                  >
+                    Learn More
+                  </Link>
+                </div>
+              </motion.div>
+              <div className="lg:col-span-3 py-16 lg:py-20">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {[
+                    { icon: TrendingUp, title: 'Faster Sales', desc: 'Get your property in front of serious buyers and tenants.', accent: 'from-amber-400/20 to-amber-500/10' },
+                    { icon: Users, title: 'Verified Leads', desc: 'Receive inquiries from genuine, pre-verified prospects.', accent: 'from-blue-400/20 to-blue-500/10' },
+                    { icon: MapPin, title: 'Better Visibility', desc: 'Featured placement in location-based searches.', accent: 'from-emerald-400/20 to-emerald-500/10' },
+                    { icon: Shield, title: 'Free Listing Option', desc: 'Start free — upgrade to premium for more exposure.', accent: 'from-purple-400/20 to-purple-500/10' },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 + i * 0.08 }}
+                      className={`group relative overflow-hidden bg-gradient-to-br ${item.accent} bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all`}
+                      style={{ clipPath: i % 2 === 0 ? 'polygon(0 0, 100% 0, 100% 100%, 16px 100%)' : 'polygon(0 0, calc(100% - 16px) 0, 100% 100%, 0 100%)' }}
+                    >
+                      <div className="p-6">
+                        <div className="flex h-9 w-9 items-center justify-center bg-gold-400/20 text-gold-400 mb-3" style={{ clipPath: 'polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%)' }}>
+                          <item.icon className="h-4 w-4" />
+                        </div>
+                        <h3 className="font-heading text-sm font-bold text-white mb-1">{item.title}</h3>
+                        <p className="text-xs text-white/50 leading-relaxed">{item.desc}</p>
+                      </div>
+                      <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-gold-400/5 rounded-full blur-xl" />
+                    </motion.div>
+                  ))}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 }}
+                    className="sm:col-span-2"
+                  >
+                    <Link
+                      href="/post-property"
+                      className="group flex items-center justify-between gap-4 bg-white/5 backdrop-blur-sm border border-white/10 px-6 py-4 hover:bg-white/10 transition-all"
+                      style={{ clipPath: 'polygon(16px 0, 100% 0, calc(100% - 16px) 100%, 0 100%)' }}
+                    >
+                      <div>
+                        <p className="text-sm font-bold text-gold-400">Ready to list?</p>
+                        <p className="text-xs text-white/50">It takes less than 10 minutes</p>
+                      </div>
+                      <ArrowRight className="h-5 w-5 text-gold-400 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════ UPLOAD PROPERTY IN 3 STEPS — redesigned ═══════════ */}
+        <section className="relative py-20 lg:py-28 px-6 lg:px-12 bg-white">
+          <div className="absolute top-0 left-0 w-1/3 h-1 bg-gradient-to-r from-gold-400 to-transparent" />
+          <div className="mx-auto max-w-7xl">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold-500">Simple Process</span>
+                <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-500 mt-4 leading-[1.1]">
+                  Upload Your Property
+                  <br />
+                  <span className="text-gold-500">in 3 Simple Steps</span>
+                </h2>
+                <p className="mt-4 text-base text-gray-400 leading-relaxed max-w-md">
+                  List your property in minutes, not hours. Our streamlined process makes it easy.
+                </p>
+                <div className="mt-8">
+                  <Link
+                    href="/post-property"
+                    className="group inline-flex items-center gap-2 px-6 py-3 bg-primary-500 text-white font-semibold text-sm hover:bg-primary-600 transition-all"
+                    style={{ clipPath: 'polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)' }}
+                  >
+                    Start Listing
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </motion.div>
+              <div className="relative">
+                <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-gold-400 via-primary-200 to-transparent hidden lg:block" />
+                <div className="space-y-8">
+                  {[
+                    { num: '01', icon: FileText, title: 'Add Property Details', desc: 'Fill in your property type, location, price, and key specifications. Our smart form guides you through every field.', color: 'from-amber-400 to-amber-500' },
+                    { num: '02', icon: Camera, title: 'Upload Photos', desc: 'Add high-quality photos to attract more buyers and tenants. Drag-and-drop interface makes it effortless.', color: 'from-blue-400 to-blue-500' },
+                    { num: '03', icon: CheckCircle, title: 'Publish Listing', desc: 'Review everything, click publish, and start receiving inquiries from interested buyers and tenants instantly.', color: 'from-emerald-400 to-emerald-500' },
+                  ].map((step, i) => (
+                    <motion.div
+                      key={step.num}
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.12 }}
+                      className="group relative flex gap-5 pl-0 lg:pl-16"
+                    >
+                      <div className="hidden lg:flex absolute left-6 top-0 w-5 h-5 rounded-full bg-white border-2 border-primary-200 items-center justify-center -translate-x-1/2 group-hover:border-gold-400 transition-colors z-10">
+                        <div className="w-2 h-2 rounded-full bg-primary-200 group-hover:bg-gold-400 transition-colors" />
+                      </div>
+                      <div className={`shrink-0 flex h-14 w-14 items-center justify-center bg-gradient-to-br ${step.color} text-white`}
+                        style={{ clipPath: 'polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%)' }}
+                      >
+                        <step.icon className="h-6 w-6" />
+                      </div>
+                      <div className="flex-1 min-w-0 pt-1">
+                        <div className="flex items-center gap-3 mb-1">
+                          <span className="text-[11px] font-bold text-gold-500 tracking-widest">{step.num}</span>
+                          <h3 className="font-heading text-base font-bold text-primary-500">{step.title}</h3>
+                        </div>
+                        <p className="text-sm text-gray-400 leading-relaxed">{step.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════ STATISTICS — redesigned ═══════════ */}
+        <section className="relative py-20 lg:py-24 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-500 via-primary-600 to-primary-800" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gold-400/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gold-400/5 rounded-full blur-3xl" />
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z'/%3E%3C/g%3E%3C/svg%3E")`, backgroundSize: '60px 60px' }} />
+          <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+              <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white">
+                DedhBigha by the <span className="text-gold-400">Numbers</span>
+              </h2>
+            </motion.div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+              {[
+                { value: '2,500+', label: 'Active Listings', suffix: 'properties listed' },
+                { value: '500+', label: 'Verified Sellers', suffix: 'trusted partners' },
+                { value: '100+', label: 'Weekly New Listings', suffix: 'added every week' },
+                { value: '10,000+', label: 'Total Inquiries', suffix: 'and counting' },
+              ].map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="relative group"
+                >
+                  <div className={`bg-white/5 backdrop-blur-sm border border-white/10 p-6 lg:p-8 text-center hover:bg-white/10 transition-all ${i % 2 === 0 ? 'lg:-translate-y-2' : 'lg:translate-y-2'}`}
+                    style={{ clipPath: 'polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)' }}
+                  >
+                    <p className="font-heading text-3xl lg:text-5xl font-bold text-gold-400 tracking-tight">{stat.value}</p>
+                    <p className="text-sm font-semibold text-white mt-2">{stat.label}</p>
+                    <p className="text-xs text-white/40 mt-1">{stat.suffix}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════ FAQ — redesigned ═══════════ */}
+        <section className="relative py-20 lg:py-28 px-6 lg:px-12">
+          <div className="absolute top-0 right-0 w-1/2 h-px bg-gradient-to-l from-primary-200 to-transparent" />
+          <div className="mx-auto max-w-7xl">
+            <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="lg:col-span-2"
+              >
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold-500">Got Questions?</span>
+                <h2 className="font-heading text-3xl sm:text-4xl font-bold text-primary-500 mt-4 leading-[1.1]">
+                  Frequently Asked
+                  <br />
+                  <span className="text-gold-500">Questions</span>
+                </h2>
+                <p className="mt-4 text-base text-gray-400 leading-relaxed">
+                  Everything you need to know about DedhBigha. Can&apos;t find what you&apos;re looking for?
+                </p>
+                <Link
+                  href="/contact"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-500 hover:text-gold-500 transition-colors group"
+                >
+                  Contact Support
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
+              <div className="lg:col-span-3">
+                <div className="space-y-2">
+                  {[
+                    { q: 'How do I post a property?', a: 'Click on "Post Property" button anywhere on the site, fill in your property details, upload photos, and publish. It takes just a few minutes to list your property.' },
+                    { q: 'Is listing free?', a: 'Yes, basic listing on DedhBigha is completely free. You can upgrade to a Premium plan for featured placement, more photos, and advanced features.' },
+                    { q: 'What is a verified property?', a: 'A verified property is one where we have confirmed the details, photos, and ownership documents. Verified listings get a trust badge and better visibility.' },
+                    { q: 'How do premium plans work?', a: 'Premium plans give your listing featured placement, higher visibility in search results, more photos, priority support, and detailed analytics. Choose from our annual plan.' },
+                    { q: 'How can I contact buyers or tenants?', a: 'Once your property is listed, interested buyers and tenants can send you inquiries directly through the platform. You can manage all communication from your dashboard.' },
+                  ].map((faq, i) => (
+                    <motion.div
+                      key={faq.q}
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.04 }}
+                    >
+                      <button
+                        onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                        className={`group w-full text-left transition-all duration-300 ${
+                          openFaq === i
+                            ? 'bg-primary-500 shadow-lg shadow-primary-500/20'
+                            : 'bg-white hover:bg-gray-50 border border-gray-200'
+                        }`}
+                        style={{ clipPath: 'polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)' }}
+                      >
+                        <div className="flex items-center justify-between px-5 py-4">
+                          <div className="flex items-center gap-3 pr-4">
+                            <span className={`flex h-7 w-7 items-center justify-center text-xs font-bold shrink-0 ${
+                              openFaq === i ? 'bg-gold-400 text-primary-900' : 'bg-primary-100 text-primary-500'
+                            }`} style={{ clipPath: 'polygon(3px 0, 100% 0, calc(100% - 3px) 100%, 0 100%)' }}>
+                              {i + 1}
+                            </span>
+                            <span className={`text-sm font-semibold ${openFaq === i ? 'text-white' : 'text-primary-500'}`}>
+                              {faq.q}
+                            </span>
+                          </div>
+                          <div className={`shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-180' : ''}`}>
+                            <div className={`flex h-6 w-6 items-center justify-center ${openFaq === i ? 'bg-gold-400' : 'bg-gray-100'}`}
+                              style={{ clipPath: 'polygon(2px 0, 100% 0, calc(100% - 2px) 100%, 0 100%)' }}
+                            >
+                              <ChevronDown className={`h-3 w-3 ${openFaq === i ? 'text-primary-900' : 'text-gray-500'}`} />
+                            </div>
+                          </div>
+                        </div>
+                        <div className={`overflow-hidden transition-all duration-300 ${openFaq === i ? 'max-h-40 pb-4' : 'max-h-0'}`}>
+                          <div className="px-5 pl-14">
+                            <p className={`text-sm leading-relaxed ${openFaq === i ? 'text-white/70' : ''}`}>{faq.a}</p>
+                          </div>
+                        </div>
+                      </button>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
