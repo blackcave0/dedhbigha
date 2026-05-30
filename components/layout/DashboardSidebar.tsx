@@ -110,7 +110,7 @@ export default function DashboardSidebar() {
           <div className={`min-w-0 flex-1 ${isCollapsed ? 'hidden' : 'block'}`}>
             <p className="truncate text-sm font-semibold text-navy-900">{user?.name ?? 'User'}</p>
             <p className="truncate text-xs capitalize text-gray-500">
-              {user?.role?.toLowerCase() ?? 'Buyer'}
+              {user?.role?.toLowerCase() ?? 'buyer'}
             </p>
           </div>
         </div>

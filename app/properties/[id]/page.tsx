@@ -18,7 +18,7 @@ import {
   Phone, ChevronLeft, ChevronRight,
   CheckCircle, Building2, User,
   ArrowLeft, Camera, ExternalLink, Star,
-  Grid3X3, MessageSquare,
+  Grid3X3, MessageSquare, Share2, MessageCircle, Link2,
 } from 'lucide-react'
 import type { Property } from '@/lib/types'
 
@@ -228,6 +228,9 @@ function ImageGallery({ images, title }: { images: string[]; title: string }) {
 }
 
 function PropertyHeader({ property }: { property: PropertyWithExtras }) {
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
+  const shareText = `Check out this property: ${property.title}`
+
   return (
     <div className="flex flex-wrap items-start justify-between gap-4">
       <div className="flex-1 min-w-0">
@@ -272,6 +275,35 @@ function PropertyHeader({ property }: { property: PropertyWithExtras }) {
             ₹{property.pricePerSqft.toLocaleString('en-IN')}/sq.ft
           </p>
         )}
+        <div className="mt-3 flex items-center justify-end gap-2">
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-navy-200 text-navy-500 hover:border-green-400 hover:text-green-500 transition-colors"
+            aria-label="Share on WhatsApp"
+          >
+            <MessageCircle className="h-4 w-4" />
+          </a>
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-navy-200 text-navy-500 hover:border-blue-400 hover:text-blue-600 transition-colors"
+            aria-label="Share on Facebook"
+          >
+            <Link2 className="h-4 w-4" />
+          </a>
+          <a
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(shareText)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-navy-200 text-navy-500 hover:border-blue-300 hover:text-blue-500 transition-colors"
+            aria-label="Share on LinkedIn"
+          >
+            <Share2 className="h-4 w-4" />
+          </a>
+        </div>
       </div>
     </div>
   )

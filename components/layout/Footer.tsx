@@ -6,20 +6,21 @@ const footerSections = [
     title: 'Quick Links',
     links: [
       { label: 'About', href: '/about' },
-      { label: 'Careers', href: '/careers' },
+      { label: 'For Sellers', href: '/for-sellers' },
+      { label: 'For Tenants', href: '/for-tenants' },
       { label: 'Contact', href: '/contact' },
       { label: 'Privacy', href: '/privacy' },
       { label: 'Terms', href: '/terms' },
     ],
   },
   {
-    title: 'Properties',
+    title: 'Resources',
     links: [
-      { label: 'Flats in Lucknow', href: '/search?type=flat' },
-      { label: 'Villas in Lucknow', href: '/search?type=villa' },
-      { label: 'Plots in Lucknow', href: '/search?type=plot' },
-      { label: 'Commercial', href: '/commercial' },
-      { label: 'New Projects', href: '/new-projects' },
+      { label: 'Services', href: '/services' },
+      { label: 'Guides & Articles', href: '/guides' },
+      { label: 'Pricing & Plans', href: '/pricing' },
+      { label: 'Verified Properties', href: '/verified' },
+      { label: 'Trust & Safety', href: '/safety' },
     ],
   },
   {
@@ -42,8 +43,9 @@ export default function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.5fr_3fr]">
           <div>
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-500">
-                <Home className="h-4.5 w-4.5 text-white" />
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl">
+                {/* <Home className="h-4.5 w-4.5 text-white" /> */}
+                <img src="/logo.png" alt="" className='w-full h-full object-cover' />
               </div>
               <span className="font-heading text-xl font-bold text-primary-500 tracking-tight">
                 Dedh<span className="text-accent-gold">Bigha</span>
@@ -53,13 +55,22 @@ export default function Footer() {
               Lucknow&apos;s most trusted real estate platform. Find verified properties, new launches, and expert advisors.
             </p>
             <div className="mt-6 flex gap-3">
-              {['X', 'IG', 'LI', 'FB', 'YT'].map((s) => (
+              {[
+                { label: 'X', href: 'https://x.com/dedhbigha', title: 'X (Twitter)' },
+                { label: 'IG', href: 'https://instagram.com/dedhbigha', title: 'Instagram' },
+                { label: 'LI', href: 'https://linkedin.com/company/dedhbigha', title: 'LinkedIn' },
+                { label: 'FB', href: 'https://facebook.com/dedhbigha', title: 'Facebook' },
+                { label: 'YT', href: 'https://youtube.com/@dedhbigha', title: 'YouTube' },
+              ].map((s) => (
                 <a
-                  key={s}
-                  href="#"
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 text-xs font-medium text-gray-500 hover:border-primary-300 hover:text-primary-600 transition-colors"
+                  aria-label={s.title}
                 >
-                  {s}
+                  {s.label}
                 </a>
               ))}
             </div>
