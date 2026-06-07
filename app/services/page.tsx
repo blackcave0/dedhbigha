@@ -4,7 +4,8 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
   Building2, Scale, FileText, Calculator,
-  Paintbrush, Truck, ArrowRight, ChevronRight,
+  Sofa, Construction, Package, PaintBucket,
+  Truck, ArrowRight, ChevronRight, Grid3x3,
   Phone, Star, Clock, Shield,
 } from 'lucide-react'
 import { Navbar, Footer } from '@/components/layout'
@@ -35,7 +36,7 @@ const services = [
     stat: '2,000+ valuations',
   },
   {
-    icon: Paintbrush, title: 'Interior Design', color: 'from-pink-500 to-pink-600',
+    icon: Sofa, title: 'Interior Design', color: 'from-pink-500 to-pink-600',
     desc: 'Transform your space with professional interior design services. From consultation to complete execution, we connect you with the best designers.',
     features: ['Design consultation', 'Space planning', 'Execution support', 'Budget optimization'],
     stat: '50+ design partners',
@@ -45,6 +46,30 @@ const services = [
     desc: 'Reliable moving services for a smooth transition to your new home. Verified packers and movers with transparent pricing.',
     features: ['Verified partners', 'Transparent pricing', 'Insurance coverage', 'Timely service'],
     stat: '1,000+ moves completed',
+  },
+  {
+    icon: Construction, title: 'Construction Work', color: 'from-red-500 to-red-600',
+    desc: 'Expert construction services for residential and commercial projects. From foundation to finishing, our partners deliver quality craftsmanship on time and within budget.',
+    features: ['Civil & structural work', 'Project management', 'Renovation & remodeling', 'Building extensions'],
+    stat: '200+ projects',
+  },
+  {
+    icon: Package, title: 'Building Material', color: 'from-orange-500 to-orange-600',
+    desc: 'Source high-quality building materials at competitive prices. We connect you with trusted suppliers for everything from bricks to finishing materials.',
+    features: ['Bricks & cement', 'Sand & aggregate', 'Steel & TMT', 'Finishing materials'],
+    stat: '50+ suppliers',
+  },
+  {
+    icon: PaintBucket, title: 'Wall and Home Painting', color: 'from-teal-500 to-teal-600',
+    desc: 'Professional painting and waterproofing services for a fresh, beautiful home. Choose from a wide range of colors, textures, and premium finishes.',
+    features: ['Interior & exterior painting', 'Texture & wallpaper', 'Waterproofing', 'Custom color designs'],
+    stat: '1,500+ rooms',
+  },
+  {
+    icon: Grid3x3, title: 'Marble and Tiles Work', color: 'from-cyan-500 to-cyan-600',
+    desc: 'Premium marble and tile installation, repair, and polishing services. Enhance your spaces with expert craftsmanship and the finest materials.',
+    features: ['Marble & granite flooring', 'Ceramic & vitrified tiles', 'Kitchen & bathroom tiling', 'Polishing & restoration'],
+    stat: '300+ installations',
   },
 ]
 
